@@ -183,7 +183,7 @@ Tutorial simples de notificações no Laravel 5.6
 1. Com seu navegador, acesse o endereço `/register` e crie um novo usuário
 2. Em outra aba/janela, acesse o endereço `/notify` e verifique se a notificação ocorreu na barra de navegação
 
-## Font
+## Fontes
 * [WebDevMatics - YouTube](https://youtu.be/i6Rdkv-DLwk)
 * [WebDevMatics - GitHub](https://github.com/webdevmatics/webdevforum)
 * [Pusher](https://pusher.com/tutorials/web-notifications-laravel-pusher-channels)
