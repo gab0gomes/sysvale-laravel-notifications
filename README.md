@@ -177,3 +177,7 @@ Tutorial simples de notificações no Laravel 5.6
    ```
 ### De volta ao console do Docker
 * Execute novamente o comando `npm run dev`
+
+## Testando
+1. Com seu navegador, acesse o endereço `/register` e crie um novo usuário
+2. Em outra aba/janela, acesse o endereço `/notify` e verifique se a notificação ocorreu na barra de navegação
