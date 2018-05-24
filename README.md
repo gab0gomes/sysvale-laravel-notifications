@@ -78,7 +78,7 @@ Tutorial simples de notificações no Laravel 5.6
    1. Adicione a linha `use Illuminate\Notifications\Messages\BroadcastMessage;` no início do aquivo
    1. Modifique o construtor da classe
       ```php
-      public function __construct()
+      public function __construct($username)
     	 {
         	$this->username = $username;
         	$this->message = "{$username} liked your status";
