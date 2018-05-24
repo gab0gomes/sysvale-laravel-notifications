@@ -97,7 +97,7 @@ Tutorial simples de notificações no Laravel 5.6
     	 {
         	 return new BroadcastMessage([
        		     'message'=>$this->message,
-        	     'user'=>$username
+        	     'user'=>auth()->user()
         	 ]);
     	 }
       ```
