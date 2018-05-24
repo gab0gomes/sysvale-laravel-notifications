@@ -118,11 +118,62 @@ Tutorial simples de notificações no Laravel 5.6
           </ul>
       </li>
       ```
-> Faça o download do [bootstrap-notifications](https://skywalkapps.github.io/bootstrap-notifications/) e extraia o arquivo dentro de `/public/css`
-
-1. Abra o arquivo `/resources/assets/app.scss` e adicione a classe
+1. Abra o arquivo `/resources/assets/sass/app.scss` e adicione a classe
    ```css
    .media-body {
-    padding-left: 5.6px;
+     padding-left: 5.6px;
    }
    ```
+1. Abra novamente o arquivo `/resources/assets/js/app.js` e adicione o código seguinte
+   ```javascript
+   var notificationsWrapper = $('.dropdown-notifications');
+   var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+   var notificationsCountElem = notificationsToggle.find('span[data-count]');
+   var notificationsCount = parseInt(notificationsCountElem.data('count'));
+   var notifications = notificationsWrapper.find('ul.dropdown-menu');
+
+   if (notificationsCount <= 0) {
+       notificationsWrapper.hide();
+   }
+
+   var updateNotifications = function (data) {
+       var existingNotifications = notifications.html();
+       var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+       var newNotificationHtml = `
+           <li class="notification active">
+               <div class="media">
+                   <div class="media-left">
+                   <div class="media-object">
+                       <img src="https://api.adorable.io/avatars/71/`+ avatar + `.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                   </div>
+                   </div>
+                   <div class="media-body">
+                   <strong class="notification-title">`+ data.message + `</strong>
+                   <!--p class="notification-desc">Extra description can go here</p-->
+                   <div class="notification-meta">
+                       <small class="timestamp">about a minute ago</small>
+                   </div>
+                   </div>
+               </div>
+           </li>
+           `;
+
+       notifications.html(newNotificationHtml + existingNotifications);
+       notificationsCount += 1;
+       notificationsCountElem.attr('data-count', notificationsCount);
+       notificationsWrapper.find('.notif-count').text(notificationsCount);
+       notificationsWrapper.show();
+   };
+   ```
+> Faça o download do [bootstrap-notifications](https://skywalkapps.github.io/bootstrap-notifications/) e extraia o arquivo dentro de `/public/css`
+
+1. Abra o arquivo `/routes/web.php`e adicione a seguinte rota
+   ```php
+   Route::get('/notify', function(){
+     Auth::user()->notify(new \App\Notifications\StatusLiked('Someone'));
+     // Notification::send(Auth::user(), new \App\Notifications\StatusLiked('Someone'));
+     return "Notification has been sent!";
+   });
+   ```
+### De volta ao console do Docker
+* Execute novamente o comando `npm run dev`
