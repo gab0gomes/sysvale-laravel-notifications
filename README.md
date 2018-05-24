@@ -16,7 +16,7 @@ Tutorial simples de notificações no Laravel 5.6
 3. `$ cd notifications-class`
 4. `$ composer create-project --prefer-dist laravel/laravel notifications`
 5. `$ cd notifications`
-6. `$ cd npm install --save laravel-echo pusher-js cross-env`
+6. `$ npm install --save laravel-echo pusher-js cross-env`
 7. `$ composer require pusher/pusher-php-server`
 8. Teste a instalação
    1. `$ apachelinker /home/project-folder/notifications-class/notifications/public`
