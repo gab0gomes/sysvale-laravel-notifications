@@ -59,8 +59,8 @@ Tutorial simples de notificações no Laravel 5.6
         ],
    ```
 1. Abra o arquivo `/config/app.php` e descomente a linha `App\Providers\BroadcastServiceProvider::class`
-1. Abra o arquivo `/resources/js/bootstrap.js` e descomente as linhas 47 até 56
-1. Abra o arquivo `/resources/js/app.js` e adicione
+1. Abra o arquivo `/resources/assets/js/bootstrap.js` e descomente as linhas 47 até 56
+1. Abra o arquivo `/resources/assets/js/app.js` e adicione
    ```javascript
    Echo.private('App.User.' + 'userId')
     .notification((notification) => {
