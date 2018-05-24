@@ -65,6 +65,7 @@ Tutorial simples de notificações no Laravel 5.6
    Echo.private('App.User.' + 'userId')
     .notification((notification) => {
       console.log(notification.type);
+      updateNotifications(notification);
     });
    ```
 ### De volta ao console do Docker no diretório do projeto
