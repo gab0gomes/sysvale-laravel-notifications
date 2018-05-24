@@ -73,7 +73,7 @@ Tutorial simples de notificações no Laravel 5.6
 1. `$ php artisan migrate`
 1. `$ php artisan make:notification StatusLiked`
 
-### No seu editor de texto
+### Voltando ao seu editor de texto
 1. Abra o arquivo `/app/notification/StatusLiked.php`
    1. Adicione a linha `use Illuminate\Notifications\Messages\BroadcastMessage;` no início do aquivo
    1. Modifique o construtor da classe
