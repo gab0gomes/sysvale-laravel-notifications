@@ -43,7 +43,7 @@ Tutorial simples de notificações no Laravel 5.6
     MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
     MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
    ```
-1. Abra o arquivo `user.php`
+1. Abra o arquivo `/app/user.php`
    * Substitua a linha que contém o `use Authenticatable` por `use Jenssegers\Mongodb\Auth\User as Authenticatable;`
 1. Abra o arquivo `/config/broadcasting.php` e em `connections` adicione
    ```php
