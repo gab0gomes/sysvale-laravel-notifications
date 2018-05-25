@@ -10,7 +10,9 @@ Tutorial simples de notificações no Laravel 5.6
   * Criar um canal
 
 ## Procedimento
-### No console do Docker
+
+### Setup do projeto
+#### No console do Docker
 1. `$ cd /home/project-folder`
 2. `$ mkdir notifications-class`
 3. `$ cd notifications-class`
@@ -23,7 +25,7 @@ Tutorial simples de notificações no Laravel 5.6
 9. Configure o moloquent
    1. [jenssegers/laravel-mongodb](https://github.com/jenssegers/laravel-mongodb)
 
-### No seu editor
+#### No seu editor
 1. Atualize o seu arquivo `.env` utilizando as credenciais de sua base de dados e com as credenciais do canal criado no Pusher
    ```
     DB_CONNECTION=mongodb
@@ -60,21 +62,15 @@ Tutorial simples de notificações no Laravel 5.6
    ```
 1. Abra o arquivo `/config/app.php` e descomente a linha `App\Providers\BroadcastServiceProvider::class`
 1. Abra o arquivo `/resources/assets/js/bootstrap.js` e descomente as linhas 47 até 56
-1. Abra o arquivo `/resources/assets/js/app.js` e adicione
-   ```javascript
-   Echo.private('App.User.' + 'userId')
-    .notification((notification) => {
-      console.log(notification.type);
-      updateNotifications(notification);
-    });
-   ```
-### De volta ao console do Docker no diretório do projeto
+
+#### De volta ao console do Docker no diretório do projeto
 1. `$ npm run dev`
 1. `$ php artisan make:auth`
 1. `$ php artisan migrate`
 1. `$ php artisan make:notification StatusLiked`
 
-### Voltando ao seu editor de texto
+### Configurando a notificação
+#### Voltando ao seu editor de texto
 1. Abra o arquivo `/app/notification/StatusLiked.php`
    1. Adicione a linha `use Illuminate\Notifications\Messages\BroadcastMessage;` no início do aquivo
    1. Modifique o construtor da classe
@@ -102,6 +98,7 @@ Tutorial simples de notificações no Laravel 5.6
         	 ]);
     	 }
       ```
+### Editando o layout
 1. Abra o arquivo `/resources/view/layout/app.blade.php`
    1. Adicione ao início do seu arquivo as linhas
       ```html
@@ -165,9 +162,17 @@ Tutorial simples de notificações no Laravel 5.6
        notificationsWrapper.find('.notif-count').text(notificationsCount);
        notificationsWrapper.show();
    };
+   
+   Echo.private('App.User.' + 'userId')
+    .notification((notification) => {
+      console.log(notification.type);
+      updateNotifications(notification);
+    });
    ```
 > Faça o download do [bootstrap-notifications](https://skywalkapps.github.io/bootstrap-notifications/) e extraia o arquivo dentro de `/public/css`
 
+
+### Acionando a notificação
 1. Abra o arquivo `/routes/web.php`e adicione a seguinte rota
    ```php
    Route::get('/notify', function(){
@@ -176,7 +181,7 @@ Tutorial simples de notificações no Laravel 5.6
      return "Notification has been sent!";
    });
    ```
-### De volta ao console do Docker
+#### De volta ao console do Docker
 * Execute novamente o comando `npm run dev`
 
 ## Teste
