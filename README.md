@@ -110,7 +110,7 @@ Tutorial simples de notificações no Laravel 5.6
       ```
 ### Editando o layout
 1. Abra o arquivo `/resources/view/layout/app.blade.php`
-   1. Adicione ao início do seu arquivo as linhas abaixo, o jquery deve ser colocado antes do `<script src="{{ asset('js/app.js') }}" defer></script>` e o bootstrap-notifications antes do `<link href="{{ asset('css/app.css') }}" rel="stylesheet">`
+   1. Adicione ao início do seu arquivo as linhas abaixo, o jquery deve ser colocado antes do `<script src="{{asset('js/app.js')}}" defer></script>` e o bootstrap-notifications antes do `<link href="{{asset('css/app.css')}}" rel="stylesheet">`
    
    
       ```html
