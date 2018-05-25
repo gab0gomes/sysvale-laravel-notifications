@@ -110,12 +110,22 @@ Tutorial simples de notificações no Laravel 5.6
       ```
 ### Editando o layout
 1. Abra o arquivo `/resources/view/layout/app.blade.php`
-   1. Adicione ao início do seu arquivo as linhas
+   1. Adicione ao início do seu arquivo as linhas abaixo, o jquery deve ser colocado antes do `<script src="{{ asset('js/app.js') }}" defer></script>` e o bootstrap-notifications antes do `<link href="{{ asset('css/app.css') }}" rel="stylesheet">`
    
    
       ```html
       <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" defer></script>
+      ```
+   1. Troque a sua tag `<body>` por
+   
+   
+      ```php
+      @if (Auth::check())
+       <body data-user-id="{{ Auth::user()->id }}">
+      @else
+       <body>
+      @endif
       ```
    1. Dentro da tag `<ul class="navbar-nav mr-auto"></ul>` adicione
    
@@ -181,11 +191,13 @@ Tutorial simples de notificações no Laravel 5.6
        notificationsWrapper.show();
    };
    
-   Echo.private('App.User.' + 'userId')
-    .notification((notification) => {
-      console.log(notification.type);
-      updateNotifications(notification);
-    });
+   if($('body').data('user-id')){
+      Echo.private('App.User.' + $('body').data('user-id'))
+          .notification((notification) => {
+              console.log(notification.type);
+              updateNotifications(notification);
+      });
+   }
    ```
 > Faça o download do [bootstrap-notifications](https://skywalkapps.github.io/bootstrap-notifications/) e extraia o arquivo dentro de `/public/css`
 
