@@ -12,7 +12,7 @@ Tutorial simples de notificações no Laravel 5.6
 ## Procedimento
 
 ### Setup do projeto
-#### No console do Docker
+> No console do Docker
 1. `$ cd /home/project-folder`
 2. `$ mkdir notifications-class`
 3. `$ cd notifications-class`
@@ -25,8 +25,10 @@ Tutorial simples de notificações no Laravel 5.6
 9. Configure o moloquent
    1. [jenssegers/laravel-mongodb](https://github.com/jenssegers/laravel-mongodb)
 
-#### No seu editor
+> No seu editor
 1. Atualize o seu arquivo `.env` utilizando as credenciais de sua base de dados e com as credenciais do canal criado no Pusher
+
+
    ```
     DB_CONNECTION=mongodb
     DB_HOST=10.0.0.230
@@ -48,6 +50,8 @@ Tutorial simples de notificações no Laravel 5.6
 1. Abra o arquivo `/app/user.php`
    * Substitua a linha que contém o `use Authenticatable` por `use Jenssegers\Mongodb\Auth\User as Authenticatable;`
 1. Abra o arquivo `/config/broadcasting.php` e em `connections` adicione
+
+
    ```php
    'pusher' => [
             'driver' => 'pusher',
@@ -63,17 +67,19 @@ Tutorial simples de notificações no Laravel 5.6
 1. Abra o arquivo `/config/app.php` e descomente a linha `App\Providers\BroadcastServiceProvider::class`
 1. Abra o arquivo `/resources/assets/js/bootstrap.js` e descomente as linhas 47 até 56
 
-#### De volta ao console do Docker no diretório do projeto
+> De volta ao console do Docker no diretório do projeto
 1. `$ npm run dev`
 1. `$ php artisan make:auth`
 1. `$ php artisan migrate`
 1. `$ php artisan make:notification StatusLiked`
 
 ### Configurando a notificação
-#### Voltando ao seu editor de texto
+> Voltando ao seu editor de texto
 1. Abra o arquivo `/app/notification/StatusLiked.php`
    1. Adicione a linha `use Illuminate\Notifications\Messages\BroadcastMessage;` no início do aquivo
    1. Modifique o construtor da classe
+   
+   
       ```php
       public function __construct($username)
     	 {
@@ -82,6 +88,8 @@ Tutorial simples de notificações no Laravel 5.6
     	 }
       ```
    1. Modifique o método `via`
+   
+   
       ```php
        public function via($notifiable)
     	  {
@@ -89,6 +97,8 @@ Tutorial simples de notificações no Laravel 5.6
     	  }
       ```
    1. Adicione o método `toBroadcast`
+   
+   
       ```php
       public function toBroadcast($notifiable)
     	 {
@@ -101,11 +111,15 @@ Tutorial simples de notificações no Laravel 5.6
 ### Editando o layout
 1. Abra o arquivo `/resources/view/layout/app.blade.php`
    1. Adicione ao início do seu arquivo as linhas
+   
+   
       ```html
       <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" defer></script>
       ```
    1. Dentro da tag `<ul class="navbar-nav mr-auto"></ul>` adicione
+   
+   
       ```html
       <li class="nav-item dropdown dropdown-notifications">
           <a href="#notifications-panel" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -117,12 +131,16 @@ Tutorial simples de notificações no Laravel 5.6
       </li>
       ```
 1. Abra o arquivo `/resources/assets/sass/app.scss` e adicione a classe
+
+
    ```css
    .media-body {
      padding-left: 5.6px;
    }
    ```
 1. Abra novamente o arquivo `/resources/assets/js/app.js` e adicione o código seguinte
+
+
    ```javascript
    var notificationsWrapper = $('.dropdown-notifications');
    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
@@ -174,6 +192,8 @@ Tutorial simples de notificações no Laravel 5.6
 
 ### Acionando a notificação
 1. Abra o arquivo `/routes/web.php`e adicione a seguinte rota
+
+
    ```php
    Route::get('/notify', function(){
      Auth::user()->notify(new \App\Notifications\StatusLiked('Someone'));
@@ -181,7 +201,7 @@ Tutorial simples de notificações no Laravel 5.6
      return "Notification has been sent!";
    });
    ```
-#### De volta ao console do Docker
+> De volta ao console do Docker
 * Execute novamente o comando `npm run dev`
 
 ## Teste
