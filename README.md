@@ -31,9 +31,9 @@ Tutorial simples de notificações no Laravel 5.6
 
    ```
     DB_CONNECTION=mongodb
-    DB_HOST=10.0.0.230
-    DB_PORT=27017
-    DB_DATABASE=notifications
+    DB_HOST=
+    DB_PORT=
+    DB_DATABASE=
     DB_USERNAME=
     DB_PASSWORD=
 
